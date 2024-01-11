@@ -1,12 +1,13 @@
 <style>
-    .item{
+    .item {
         display: flex;
         padding: 3px;
         margin: 3px;
         justify-content: space-between;
         align-items: center;
     }
-    .item div{
+
+    .item div {
         width: 24.5%;
         margin: 0 0.5%;
         text-align: center;
@@ -20,41 +21,44 @@
         <div class="ct" style="width: 24.5%;margin:0 0.25%">預告片排序</div>
         <div class="ct" style="width: 24.5%;margin:0 0.25%">操作</div>
     </div>
-    <div style="width: 100%;height:190px;overflow:auto">
-<?php
-$pos=$Poster->all(" order by rank");
-foreach($pos as $idx => $po){
-?>
-<div class="item">
-    <div>
-        <img src="./img/<?=$po['img'];?>" style="width: 60px;">
-    </div>
-    <div>
-        <input type="text" name="name[]" value="<?=$po['name'];?>">
-    </div>
-    <div>
-        <input type="button" value="往上">
-        <input type="button" value="往下">
-    </div>
-    <div>
-        <input type="checkbox" name="sh[]" value="<?=$po['id'];?>" <?=($po['sh']==1)?'checked':'';?>>顯示
-        <input type="checkbox" name="del[]" value="<?=$po['id'];?>">刪除
-        <select name="ani" id="">
-            <option value="">淡入淡出</option>
-            <option value="">收縮</option>
-            <option value="">滑入滑出</option>
-        </select>
-    </div>
-</div>
+    <form action="./api/edit_poster.php" method="post">
+        <div style="width: 100%;height:190px;overflow:auto">
+            <?php
+            $pos = $Poster->all(" order by rank");
+            foreach ($pos as $idx => $po) {
+            ?>
+                <div class="item">
+                    <div>
+                        <img src="./img/<?= $po['img']; ?>" style="width: 60px;">
+                    </div>
+                    <div>
+                        <input type="text" name="name[]" value="<?= $po['name']; ?>">
+                    </div>
+                    <div>
+                        <input type="button" value="往上">
+                        <input type="button" value="往下">
+                    </div>
+                    <div>
+                        <input type="hidden" name="id[]" value="<?= $po['id']; ?>">
+                        <input type="checkbox" name="sh[]" value="<?= $po['id']; ?>" <?= ($po['sh'] == 1) ? 'checked' : ''; ?>>顯示
+                        <input type="checkbox" name="del[]" value="<?= $po['id']; ?>">刪除
+                        <select name="ani[]" id="">
+                            <option value="1" <?= ($po['ani'] == 1) ? 'selected' : ''; ?>>淡入淡出</option>
+                            <option value="2" <?= ($po['ani'] == 1) ? 'selected' : ''; ?>>收縮</option>
+                            <option value="3" <?= ($po['ani'] == 1) ? 'selected' : ''; ?>>滑入滑出</option>
+                        </select>
+                    </div>
+                </div>
 
-<?php
-}
-?>
-</div>
-    <div class="ct">
-        <input type="submit" value="編輯確定">
-        <input type="reset" value="重置">
-    </div>
+            <?php
+            }
+            ?>
+        </div>
+        <div class="ct">
+            <input type="submit" value="編輯確定">
+            <input type="reset" value="重置">
+        </div>
+    </form>
 </div>
 <hr>
 <div>
