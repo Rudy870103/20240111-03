@@ -35,8 +35,8 @@
                         <input type="text" name="name[]" value="<?= $po['name']; ?>">
                     </div>
                     <div>
-                        <input type="button" value="往上">
-                        <input type="button" value="往下">
+                        <input type="button" value="往上" data-id="<?=$po['id'];?>" data-sw="<?=($idx!==0)?$pos[$idx-1]['id']:$po['id'];?>">
+                        <input type="button" value="往下" data-id="<?=$po['id'];?>" data-sw="<?=((count($pos)-1)!=$idx)?$pos[$idx+1]['id']:$po['id'];?>">
                     </div>
                     <div>
                         <input type="hidden" name="id[]" value="<?= $po['id']; ?>">
