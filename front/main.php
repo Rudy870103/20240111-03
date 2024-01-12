@@ -25,7 +25,8 @@
     text-align: center;
   }
 
-  .left,.right {
+  .left,
+  .right {
     width: 0;
     border: 20px solid black;
     border-top-color: transparent;
@@ -39,22 +40,27 @@
   .right {
     border-right-width: 0;
   }
-.btns{
-  width: 360px;
-  height: 100px;
-  display: flex;
-  overflow: hidden;
-}
+
+  .btns {
+    width: 360px;
+    height: 100px;
+    display: flex;
+    overflow: hidden;
+  }
+  
   .btn img {
     width: 60px;
     height: 80px;
   }
-  .btn{
+  
+  .btn {
     font-size: 12px;
     text-align: center;
     flex-shrink: 0;
     width: 90px;
+    position: relative;
   }
+
   .controls {
     width: 420px;
     height: 100px;
@@ -102,6 +108,24 @@
 </div>
 <script>
   $(".item").eq(0).show();
+  let total=$(".btn").length;
+  let p = 0;
+  $(".left,.right").on("click", function() {
+    let arrow = $(this).attr('class');
+    switch (arrow) {
+      case "right":
+        if(p+1<=(total-4)){
+          p = p + 1;
+        }
+        break;
+      case "left":
+        if(p-1>=0){
+          p = p - 1;
+        }
+        break;
+    }
+    $(".btn").animate({right: 90 * p})
+  })
 </script>
 <style>
   .movies {
