@@ -71,7 +71,18 @@
 </div>
 <script>
     $(".show-btn").on("click",function(){
-
+        let id=$(this).data('id');
+        $.post("./api/show.php",{id},()=>{
+            location.reload();
+            switch($(this).text()){
+                case "隱藏":
+                    $(this).text("顯示");
+                    break;
+                case "顯示":
+                    $(this).text("隱藏");
+                    break;
+            }
+        })
     })
     $(".sw-btn").on("click",function(){
         
