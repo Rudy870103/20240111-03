@@ -27,7 +27,7 @@
         width: 73%;
     }
 </style>
-<div style="width:100%; overflow:auto">
+<div style="width:100%;height:415px ; overflow:auto">
     <?php
     $movies = $Movie->all(" order by rank");
     foreach ($movies as $idx => $movie) {
@@ -97,6 +97,9 @@
         
     })
     $(".del-btn").on("click",function(){
-        
+        let id=$(this).data('id');
+        $.post("./api/del.php",{id,table:'movie'},()=>{
+            location.reload();
+        })
     })
 </script>
