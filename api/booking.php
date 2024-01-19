@@ -1,6 +1,6 @@
 <?php
 include_once "db.php";
-$movie = $Movei->find($_GET['movie_id']);
+$movie = $Movie->find($_GET['movie_id']);
 $date = $_GET['date'];
 $session = $_GET['session'];
 ?>
@@ -18,11 +18,17 @@ $session = $_GET['session'];
     .seat {
         width: 63px;
         height: 85px;
+        position: relative;
     }
     .seats {
         display: flex;
         flex-wrap: wrap;
     }
+    .chk{
+    position: absolute;
+    right:2px;
+    bottom:2px;
+}
 </style>
 
 <div id="room">
@@ -33,7 +39,11 @@ $session = $_GET['session'];
             echo "<div class='ct'>";
             echo (floor($i/5)+1) . "排";
             echo (($i%5)+1) . "號";
-            echo "</div>"
+            echo "</div>";
+            echo "<div class='ct'>";
+            echo "<img src='./img/03D02.png'>";
+            echo "</div>";
+            echo "<input type='checkbox' name='chk' value='$i' class='chk'>";
             echo "</div>";
         }
         ?>
