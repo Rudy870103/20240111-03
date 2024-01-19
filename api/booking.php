@@ -79,6 +79,7 @@ $session = $_GET['session'];
         $.post("./api/checkout.php",{movie:'<?=$movie['name'];?>',
                                     date:'<?=$date;?>',
                                     session:'<?=$session;?>',
+                                    qt:seats.length,
                                     seats},(no)=>{
                                     location.href=`?do=result&no=${no}`;
                                 })
