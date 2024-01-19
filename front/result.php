@@ -24,8 +24,8 @@ $order=$Order->find(['no'=>$_GET['no']]);
             <?php
             $seats=unserialize($order['seats']);
             foreach($seats as $seat){
-            echo (floor($i/5)+1) . "排";
-            echo (($i%5)+1) . "號";
+            echo (floor($seat/5)+1) . "排";
+            echo (($seat%5)+1) . "號";
             echo "<br>";
             }
             echo "共{$order['qt']}張電影票"
