@@ -50,11 +50,28 @@ $session = $_GET['session'];
     </div>
 </div>
 <div id="info">
-    <div>您選擇的電影是 : </div>
-    <div>您選擇的時刻是 : </div>
-    <div>您已經勾選<span id="tickets"></span>張票，最多可以購買四張</div>
+    <div>您選擇的電影是 : <?=$movie['name'];?></div>
+    <div>您選擇的時刻是 : <?=$date;?> <?=$session;?></div>
+    <div>您已經勾選<span id="tickets">0</span>張票，最多可以購買四張</div>
     <div>
         <button onclick="$('#select').show();$('#booking').hide()">上一步</button>
         <button>訂購</button>
     </div>
 </div>
+
+<script>
+    let seats=new Array();
+    $(".chk").on("change", function(){
+        if($(this).prop('checked')){
+            if(seats.length+1<=4){
+                seats.push($(this).val())
+            }else{
+                $(this).prop('checked',false)
+                alert("每人只能勾選四張票")
+            }
+        }else{
+            seats.splice(seats.indexOf($(this).val()),1)
+        }
+        $("#tickets").text(seats.length)
+    })
+</script>
